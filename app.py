@@ -44,7 +44,7 @@ def download():
         "socket_timeout": 15,
         "extractor_args": {
             "youtube": {
-                "player_client": ["web"],
+                "player_client": ["android", "web"],
             }
         },
     }
@@ -55,7 +55,7 @@ def download():
     node_check = subprocess.run(["node", "--version"], capture_output=True, text=True)
     if node_check.returncode == 0:
         logger.info(f"Node.js detected: {node_check.stdout.strip()}")
-        ydl_opts["js_runtimes"] = "nodejs"
+        ydl_opts["js_runtimes"] = ["nodejs"]
     else:
         logger.warning("Node.js not found. YouTube signature solving may fail.")
 
