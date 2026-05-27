@@ -1,9 +1,7 @@
 services:
   - type: web
-    name: video-downloader
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    name: yt-new
+    runtime: docker
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0

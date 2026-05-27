@@ -41,12 +41,7 @@ def download():
     ydl_opts = {
         "quiet": True,
         "noplaylist": True,
-        "socket_timeout": 15, # 15 seconds connection timeout
-        "extractor_args": {
-            "youtube": {
-                "player_client": ["tv", "web_embedded"]
-            }
-        }
+        "socket_timeout": 15,
     }
 
     cookie_file = "cookies.txt"
