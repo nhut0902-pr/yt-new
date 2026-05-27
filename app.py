@@ -76,10 +76,13 @@ def download():
     # Check if URL is YouTube to apply specific bypass rules
     is_youtube = "youtube.com" in url.lower() or "youtu.be" in url.lower()
 
-    # Use cookies.txt if available (essential for bypassing YouTube bot checks and age gates)
+    # Use cookies.txt if available (essential for bypassing TikTok/social bot checks)
     if os.path.exists(cookie_file) and os.path.getsize(cookie_file) > 0:
-        ydl_opts["cookiefile"] = cookie_file
-        logger.info("Using cookies.txt for request authentication.")
+        if is_youtube:
+            logger.info("YouTube URL detected. Skipping cookies.txt to allow clean android client extraction and avoid IP-mismatch block.")
+        else:
+            ydl_opts["cookiefile"] = cookie_file
+            logger.info("Using cookies.txt for request authentication.")
     else:
         logger.warning("cookies.txt not found or is empty. Proceeding without authentication cookies.")
 
